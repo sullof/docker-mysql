@@ -1,6 +1,6 @@
 #!/bin/sh
  
-TAG="mysql"
+TAG="sullof/mysql"
  
 CONTAINER_ID=$(docker ps | grep $TAG | awk '{print $1}')
  
