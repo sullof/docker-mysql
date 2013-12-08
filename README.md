@@ -16,13 +16,9 @@ docker build -t sullof/mysql .
 
 Edit the ```run-client.sh``` file and change the value of the variable TAG as well.
 
-Create the local folder you want to use and link it to the folder where MySQL. 
-In my case I created ```/data/mysql```.
+Create the local folder you will use for MySQL's data. 
+In my case I will create ```/data/mysql``` on the server.
 
-Run the container with a command like this:
+Edit the file ```run.sh``` and change the values of LOCAL_FOLDER and TAG. Make it executable with ```chmod +x run.sh``` and execute it to have the IP of the container.
 
-```
-docker run -d -p 3306:3306 -v /data/mysql:/var/lib/mysql sullof/mysql
-```
-
-Run ```run-client.sh``` to see the IP of the container and enjoy it!
+You have done, enjoy it!

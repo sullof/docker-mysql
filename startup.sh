@@ -8,10 +8,10 @@ if [ ! -f /var/lib/mysql/ibdata1 ]; then
  
 	/usr/bin/mysqld_safe & sleep 10s
  
-    mysqladmin -u root password $MYSQL_PASSWORD 
-    
+    mysqladmin -u root password '$MYSQL_PASSWORD' 
+    mysql -u root -p'$MYSQL_PASSWORD' -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
     killall mysqld
 	
 fi
 
-/usr/local/bin/supervisord -n
+rm -f /root/mysql_root_pwd.txt

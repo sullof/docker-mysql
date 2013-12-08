@@ -18,8 +18,9 @@ RUN echo "[program:mysqld]" >> /etc/supervisord.conf
 RUN echo "command=/usr/bin/mysqld_safe" >> /etc/supervisord.conf
  
 ADD ./mysql_root_pwd.txt /root/mysql_root_pwd.txt 
-ADD ./startup.sh /opt/startup.sh
+ADD ./startup.sh /root/startup.sh
+RUN chmod +x /root/startup.sh && rm /root/startup.sh
   
 EXPOSE 3306 22
  
-CMD ["/bin/bash", "/opt/startup.sh"]
+CMD ["/usr/local/bin/supervisord","-n"]
