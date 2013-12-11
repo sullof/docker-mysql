@@ -1,3 +1,6 @@
+3# This is still a work in progress and doesn't currently work. Wait that I complete it, please :) 
+
+
 ### Docker-mysql
 
 This project starts from [Creating a MySQL Docker Container](http://txt.fliglio.com/2013/11/creating-a-mysql-docker-container/) 
