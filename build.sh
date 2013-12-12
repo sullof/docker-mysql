@@ -1,2 +1,5 @@
 #!/bin/bash
-docker build -t sullof/mysql .
+
+. ./image.conf
+
+docker build -t "$REPOSITORY:$TAG" .

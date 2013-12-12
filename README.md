@@ -1,27 +1,51 @@
-3# This is still a work in progress and doesn't currently work. Wait that I complete it, please :) 
-
-
-### Docker-mysql
+Docker-mysql
+============
 
 This project starts from [Creating a MySQL Docker Container](http://txt.fliglio.com/2013/11/creating-a-mysql-docker-container/) 
 by [Ben Schwartz](https://twitter.com/benhschwartz) and adds something : )
 
-### How to use
+## How to use
 
-Edit mysql_root_pwd.txt and set your password for mysql root. You don't want to generate a random password because we will 
+Edit /adds/container.conf and set your password for the user admin. You don't want to generate a random password because we will 
 use a local folder for MySQL database, in order to have the persistence of data.
 
-Build the image choosing a tag for it. In my case I use ```sullof/mysql``` and I build the image with the following command:
+Edit the file image.conf to choose repository and tag. Execute the following code:
 
+```bash
+$ chmod +x *.sh
+$ ./build
+$ ./run
 ```
-docker build -t sullof/mysql .
+Now you can connect to your container with something like:
+```
+$ mysql -u admin -p -h database.local
 ```
 
-Edit the ```run-client.sh``` file and change the value of the variable TAG as well.
+## Known problems
 
-Create the local folder you will use for MySQL's data. 
-In my case I will create ```/data/mysql``` on the server.
+After a while, sometimes, the mysqld process crashes. It need some fixes :)
 
-Edit the file ```run.sh``` and change the values of LOCAL_FOLDER and TAG. Make it executable with ```chmod +x run.sh``` and execute it to have the IP of the container.
+## License 
 
-You have done, enjoy it!
+(The MIT License)
+
+Copyright (c) 2013 Francesco Sullo <sullof@sullof.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
