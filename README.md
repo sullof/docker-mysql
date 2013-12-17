@@ -4,6 +4,21 @@ Docker-mysql
 This project starts from [Creating a MySQL Docker Container](http://txt.fliglio.com/2013/11/creating-a-mysql-docker-container/) 
 by [Ben Schwartz](https://twitter.com/benhschwartz) and adds something : )
 
+# Requirements
+
+### [docker-sshd](https://github.com/sullof/docker-sshd)
+
+This forked project starts ```FROM sullof/sshd```, so first off you must build the image sullof/sshd starting from 
+[docker-sshd](https://github.com/sullof/docker-sshd).
+
+Though, if you don't need a ssh connection, you can edit the ```Dockerfile```, change the first line to ```FROM ubuntu:12.04```, 
+and remove the port 22 from the ```EXPOSE``` command. 
+
+### [startie](https://github.com/sullof/startie) 
+
+Startie is a simple bash script to recover the correct association between a local hostname and the IP of a container, 
+for example after a server reboot. If you don't want to use it, remove last line from ```run.sh```.
+
 ## How to use
 
 Edit /adds/container.conf and set your password for the user admin. You don't want to generate a random password because we will 
@@ -16,14 +31,10 @@ $ chmod +x *.sh
 $ ./build
 $ ./run
 ```
-Now you can connect to your container with something like:
+If the tag you chose is _database_, you can connect to your container with something like:
 ```
 $ mysql -u admin -p -h database.local
 ```
-
-## Known problems
-
-After a while, sometimes, the mysqld process crashes. It need some fixes :)
 
 ## License 
 
