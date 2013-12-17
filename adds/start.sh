@@ -4,6 +4,8 @@ if [ ! -f /var/lib/mysql/ibdata1 ]; then
  
 	. /root/container.conf
 	
+	chown mysql:mysql /var/run/mysqld/
+	
 	mysql_install_db
 	/usr/bin/mysqld_safe & 
 	

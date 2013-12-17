@@ -6,10 +6,11 @@ RUN ln -s /bin/true /sbin/initctl
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
- 
+
 RUN apt-get -y install mysql-client mysql-server
+RUN apt-get clean
  
-RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+#RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
 # Supervisor Config
 # Consider that supervisord is installed and configured by sullof/sshd.

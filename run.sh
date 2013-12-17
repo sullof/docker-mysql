@@ -4,19 +4,21 @@
 
 IMAGE="$REPOSITORY:$TAG"
 
-MYSQL_FOLDER="/data/$TAG/mysql"
-if [ ! -d "$MYSQL_FOLDER" ]; then
-	mkdir -p $MYSQL_FOLDER
+DATA_FOLDER="/var/docker/$TAG"
+
+if [ ! -d "$DATA_FOLDER" ]
+then
+	mkdir -p $DATA_FOLDER/var/lib/mysql
+	mkdir -p $DATA_FOLDER/var/log/mysql
+	mkdir -p $DATA_FOLDER/var/run/mysql
+	mkdir -p $DATA_FOLDER/etc/mysql/conf.d
 fi
 
-UPLOADS_FOLDER="/data/$TAG/uploads"
-if [ ! -d "$UPLOADS_FOLDER" ]; then
-	mkdir -p $UPLOADS_FOLDER
-fi
+cp my.cnf $DATA_FOLDER/etc/mysql/.
 
 CONTAINER_ID=$(docker run -d \
-	-v $MYSQL_FOLDER:/var/lib/mysql:rw \
-	-v $UPLOADS_FOLDER:/usr/share/nginx/www/wp-content/uploads:rw \
+	-v $DATA_FOLDER/var:/var:rw \
+	-v $DATA_FOLDER/etc/mysql:/etc/mysql:rw \
 	$IMAGE)
 
 startie $TAG $CONTAINER_ID
